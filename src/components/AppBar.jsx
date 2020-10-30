@@ -1,27 +1,21 @@
 import React from 'react';
-import { Text, View, StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Constants from 'expo-constants';
+import AppBarTab from './AppBarTab'
 
 const styles = StyleSheet.create({
   container: {
     paddingTop: Constants.statusBarHeight,
-    flexGrow: 1,
-    opacity: 0.8,
+    display: "flex",
     backgroundColor: "#24292e",
   },
-  text: {
-    color: "#ebdb4d",
-    margin: 10,
-  }
 });
 
 const AppBar = () => {
   return (
-    <TouchableWithoutFeedback>
-      <View style={styles.container}>
-        <Text style={styles.text}>Repositories</Text>
-      </View>
-    </TouchableWithoutFeedback>
+    <View style={styles.container}>
+      <AppBarTab text={`Repositories`} />
+    </View>
   );
 };
 
