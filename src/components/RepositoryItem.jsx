@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Image, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, View, Image } from 'react-native';
 import Text from './Text'
 
 const styles = StyleSheet.create({
@@ -11,56 +11,84 @@ const styles = StyleSheet.create({
   badge: {
     backgroundColor: "#3374b4",
     color: '#ffffff',
-    borderRadius: 3,
+    borderRadius: 5,
     width: 100,
     padding: 1,
+    textAlign: 'center',
   },
-  flexContainer: {
+  flexContainerA: {
     display: 'flex',
     flexDirection: 'row',
+    padding: 7,
+  },
+  flexContainerB: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    flexGrow: 1,
+    width: 0,
+    flex: 1,  
+    padding: 2
   },
   flexItemMain: {
     flexGrow: 1,
-    backgroundColor: '#c7bdbd',
-    marginTop: 5,
-    marginLeft: 10,
-    marginRight: 10,
+    backgroundColor: '#f1eeea',
   },
-  flexItemSub: {
+  flexItemSubA: {
     flexGrow: 2,
-    backgroundColor: '#fff3f3',
-    padding: 1,
-  }
+    padding: 2,
+    flexShrink: 1,
+    margin: 1,
+  },
+  flexItemSubB: {
+    flexGrow: 2,
+    padding: 2,
+    flexShrink: 1,
+    margin: 1,
+    alignItems: 'center'
+  },
 })
+
 
 const RepositoryItem = (props) => {
   return(
     <View style={styles.flexItemMain}>
-      <Image
-        style={styles.logo}
-        source={{ uri: props.avatar }}
-      />
-      <Text fontWeight="bold" fontSize="subheading">{props.name}</Text>
-      <Text color="primary">{props.description}</Text>
-      <TouchableWithoutFeedback>
-        <Text style={styles.badge}>
-          {props.language}
-        </Text>
-      </TouchableWithoutFeedback>
-      <View style={styles.flexContainer}>
-        <View style={styles.flexItemSub}>
-          <Text>Stars: {props.stars}</Text>
+
+      <View style={styles.flexContainerA}>
+        <View>
+          <Image style={styles.logo} source={{ uri: props.avatar }} />
         </View>
-        <View style={styles.flexItemSub}>
-          <Text>Forks: {props.forks}</Text>
-        </View>
-        <View style={styles.flexItemSub}>
-          <Text>Reviews: {props.reviews}</Text>
-        </View>
-        <View style={styles.flexItemSub}>
-          <Text>Rating: {props.rating}</Text>
+        <View style={styles.flexContainerB}>
+          <View style={styles.flexItemSubA}>
+            <Text fontWeight="bold" fontSize="subheading">{props.name}</Text>
+          </View>
+          <View style={styles.flexItemSubA}>
+            <Text color="primary">{props.description}</Text>
+          </View>
+          <View style={styles.flexItemSubA}>
+            <Text style={styles.badge}>{props.language}</Text>
+          </View>
         </View>
       </View>
+
+      <View style={styles.flexContainerA}>
+        <View style={styles.flexItemSubB}>
+          <Text fontWeight='bold'>{props.stars}</Text>
+          <Text>Stars</Text>
+        </View>
+        <View style={styles.flexItemSubB}>
+          <Text fontWeight='bold'>{props.forks}</Text>
+          <Text>Forks</Text>
+        </View>
+        <View style={styles.flexItemSubB}>
+          <Text fontWeight='bold'>{props.reviews}</Text>
+          <Text>Reviews</Text>
+        </View>
+        <View style={styles.flexItemSubB}>
+          <Text fontWeight='bold'>{props.rating}</Text>
+          <Text>Rating</Text>
+        </View>
+      </View>
+
     </View>
   );
 };
