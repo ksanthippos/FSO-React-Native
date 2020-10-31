@@ -7,6 +7,10 @@ const styles = StyleSheet.create({
   separator: {
     height: 10,
   },
+  flexContainer: {
+    display: 'flex',
+    flexDirection: 'row'
+  }
 });
 
 const repositories = [
@@ -69,18 +73,21 @@ const renderItem = ({ item }) => {
       forks={item.forksCount}
       reviews={item.reviewCount}
       rating={item.ratingAverage}
+      avatar={item.ownerAvatarUrl}
     />
   )
 }
 
 const RepositoryList = () => {
   return (
-    <FlatList
-      data={repositories}
-      ItemSeparatorComponent={ItemSeparator}
-      renderItem={renderItem}
-      keyExtractor={item => item.id}
-    />
+    <View style={styles.flexContainer}>
+      <FlatList
+        data={repositories}
+        ItemSeparatorComponent={ItemSeparator}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
+      />
+    </View>
   );
 };
 
