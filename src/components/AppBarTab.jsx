@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, StyleSheet, TouchableWithoutFeedback } from 'react-native'
+import { Text, StyleSheet, TouchableWithoutFeedback, View } from 'react-native'
 
 const styles = StyleSheet.create({
   tab: {
@@ -15,7 +15,9 @@ const AppBarTab = (props) => {
 
   return(
     <TouchableWithoutFeedback>
-      <Text style={styles.tab}>{props.text}</Text>
+      <View>
+        <Text style={styles.tab}>{props.text}</Text>
+      </View>
     </TouchableWithoutFeedback>
   )
 }

@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   flexContainerA: {
     display: 'flex',
     flexDirection: 'row',
-    padding: 7,
+    padding: 10,
   },
   flexContainerB: {
     display: 'flex',
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     width: 0,
     flex: 1,  
-    padding: 2
+    padding: 5
   },
   flexItemMain: {
     flexGrow: 1,
@@ -37,19 +37,23 @@ const styles = StyleSheet.create({
     flexGrow: 2,
     padding: 2,
     flexShrink: 1,
-    margin: 1,
   },
   flexItemSubB: {
     flexGrow: 2,
     padding: 2,
     flexShrink: 1,
-    margin: 1,
     alignItems: 'center'
   },
 })
 
 
 const RepositoryItem = (props) => {
+
+  // 23450 --> 23.5k
+  const kFormatter = (num) => {
+    return Math.abs(num) > 999 ? Math.sign(num)*((Math.abs(num)/1000).toFixed(1)) + 'k' : Math.sign(num)*Math.abs(num)
+  } 
+
   return(
     <View style={styles.flexItemMain}>
 
@@ -72,11 +76,11 @@ const RepositoryItem = (props) => {
 
       <View style={styles.flexContainerA}>
         <View style={styles.flexItemSubB}>
-          <Text fontWeight='bold'>{props.stars}</Text>
+          <Text fontWeight='bold'>{kFormatter(props.stars)}</Text>
           <Text>Stars</Text>
         </View>
         <View style={styles.flexItemSubB}>
-          <Text fontWeight='bold'>{props.forks}</Text>
+          <Text fontWeight='bold'>{kFormatter(props.forks)}</Text>
           <Text>Forks</Text>
         </View>
         <View style={styles.flexItemSubB}>
