@@ -42,9 +42,6 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     padding: 3,
   },
-  badgeStyle: {
-    color: '#e7dada',
-  },
 })
 
 
@@ -70,7 +67,7 @@ const RepositoryItem = (props) => {
             <Text color="primary">{props.description}</Text>
           </View>
           <View style={styles.badgeItem}>
-            <Text style={styles.badgeStyle}>{props.language}</Text>
+            <Text color="white">{props.language}</Text>
           </View>
         </View>
       </View>

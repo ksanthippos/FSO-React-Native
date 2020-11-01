@@ -9,7 +9,8 @@ const styles = StyleSheet.create({
   },
   flexContainer: {
     display: 'flex',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    marginBottom: 80,
   }
 });
 
