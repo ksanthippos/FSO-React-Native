@@ -1,11 +1,22 @@
 import React from 'react';
-import { View } from 'react-native';
+import { Button, TouchableWithoutFeedback, View } from 'react-native';
 import Text from './Text';
+import TextInput from './TextInput'
+import FormikTextInput from './FormikTextInput'
 
 const SignIn = () => {
   return (
     <View>
-      <Text>The sign in view</Text>
+      <Text>Login</Text>
+      <TextInput 
+        placeholder="Username"
+      />
+      <TextInput 
+        placeholder="Password"
+      />
+      <TouchableWithoutFeedback>
+        <Button title={`Login`} />
+      </TouchableWithoutFeedback>
     </View>
   );
 };
