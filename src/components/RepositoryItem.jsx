@@ -3,46 +3,47 @@ import { StyleSheet, View, Image } from 'react-native';
 import Text from './Text'
 
 const styles = StyleSheet.create({
-  logo: {
-    width: 50,
-    height: 50,
-    borderRadius: 3,
+  main: {
+    flexGrow: 1,
+    backgroundColor: '#f1eeea',
   },
-  badge: {
-    backgroundColor: "#3374b4",
-    color: '#ffffff',
-    borderRadius: 5,
-    width: 100,
-    padding: 1,
-    textAlign: 'center',
-  },
-  flexContainerA: {
+  containerA: {
     display: 'flex',
     flexDirection: 'row',
     padding: 10,
   },
-  flexContainerB: {
+  containerB: {
     display: 'flex',
     flexWrap: 'wrap',
     flexGrow: 1,
     width: 0,
     flex: 1,  
-    padding: 5
+    marginLeft: 10,
   },
-  flexItemMain: {
-    flexGrow: 1,
-    backgroundColor: '#f1eeea',
+  logo: {
+    width: 50,
+    height: 50,
+    borderRadius: 3,
   },
-  flexItemSubA: {
+  infoItem: {
     flexGrow: 2,
     padding: 2,
     flexShrink: 1,
   },
-  flexItemSubB: {
+  valueItem: {
     flexGrow: 2,
     padding: 2,
     flexShrink: 1,
     alignItems: 'center'
+  },
+  badgeItem: {
+    alignSelf: 'flex-start',
+    backgroundColor: "#3374b4",
+    borderRadius: 3,
+    padding: 3,
+  },
+  badgeStyle: {
+    color: '#e7dada',
   },
 })
 
@@ -55,39 +56,39 @@ const RepositoryItem = (props) => {
   } 
 
   return(
-    <View style={styles.flexItemMain}>
+    <View style={styles.main}>
 
-      <View style={styles.flexContainerA}>
+      <View style={styles.containerA}>
         <View>
           <Image style={styles.logo} source={{ uri: props.avatar }} />
         </View>
-        <View style={styles.flexContainerB}>
-          <View style={styles.flexItemSubA}>
+        <View style={styles.containerB}>
+          <View style={styles.infoItem}>
             <Text fontWeight="bold" fontSize="subheading">{props.name}</Text>
           </View>
-          <View style={styles.flexItemSubA}>
+          <View style={styles.infoItem}>
             <Text color="primary">{props.description}</Text>
           </View>
-          <View style={styles.flexItemSubA}>
-            <Text style={styles.badge}>{props.language}</Text>
+          <View style={styles.badgeItem}>
+            <Text style={styles.badgeStyle}>{props.language}</Text>
           </View>
         </View>
       </View>
 
-      <View style={styles.flexContainerA}>
-        <View style={styles.flexItemSubB}>
+      <View style={styles.containerA}>
+        <View style={styles.valueItem}>
           <Text fontWeight='bold'>{kFormatter(props.stars)}</Text>
           <Text>Stars</Text>
         </View>
-        <View style={styles.flexItemSubB}>
+        <View style={styles.valueItem}>
           <Text fontWeight='bold'>{kFormatter(props.forks)}</Text>
           <Text>Forks</Text>
         </View>
-        <View style={styles.flexItemSubB}>
+        <View style={styles.valueItem}>
           <Text fontWeight='bold'>{props.reviews}</Text>
           <Text>Reviews</Text>
         </View>
-        <View style={styles.flexItemSubB}>
+        <View style={styles.valueItem}>
           <Text fontWeight='bold'>{props.rating}</Text>
           <Text>Rating</Text>
         </View>
