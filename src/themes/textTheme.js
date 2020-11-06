@@ -1,3 +1,4 @@
+
 const textTheme = {
   colors: {
     textPrimary: '#24292e',
@@ -8,9 +9,6 @@ const textTheme = {
   fontSizes: {
     body: 14,
     subheading: 16,
-  },
-  fonts: {
-    main: 'System',
   },
   fontWeights: {
     normal: '400',
