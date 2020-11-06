@@ -12,7 +12,26 @@ const styles = StyleSheet.create({
     color: '#d73a4a',
   },
   errorColor: {
-    backgroundColor: 'red',
+    backgroundColor: '#d3caca',
+    borderColor: '#8f2c0e',
+    borderWidth: 1.5,
+    borderRadius: 3,
+    padding: 10,
+    marginTop: 10,
+    marginLeft: 20,
+    marginRight: 20,
+    alignItems: 'center',
+  },
+  normalColor: {
+    backgroundColor: '#ede1e1',
+    borderColor: '#999b9b',
+    borderWidth: 1.5,
+    borderRadius: 3,
+    padding: 10,
+    marginTop: 10,
+    marginLeft: 20,
+    marginRight: 20,
+    alignItems: 'center',
   }
 });
 
@@ -27,7 +46,7 @@ const FormikTextInput = ({ name, ...props }) => {
         onBlur={() => helpers.setTouched(true)}
         value={field.value}
         error={showError}
-        style={styles.errorColor}
+        style={showError ? styles.errorColor : styles.normalColor}
         {...props}
       />
       {showError && <Text style={styles.errorText}>{meta.error}</Text>}

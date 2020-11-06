@@ -11,16 +11,6 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight:10,
   },
-  input: {
-    borderColor: '#999b9b',
-    borderWidth: 1.5,
-    borderRadius: 3,
-    padding: 10,
-    marginTop: 10,
-    marginLeft: 20,
-    marginRight: 20,
-    alignItems: 'center',
-  },
   button: {
     backgroundColor: '#4b9ed4',
     borderColor: '#3887bd',
@@ -58,12 +48,10 @@ const SignInForm = ({ onsubmit }) => {
   return(
     <View style={styles.flexContainer}>
       <FormikTextInput 
-        style={styles.input} 
         name="username" 
         placeholder="Username:" 
       />
       <FormikTextInput 
-        style={styles.input} 
         secureTextEntry 
         name="password" 
         placeholder="Password:" 
