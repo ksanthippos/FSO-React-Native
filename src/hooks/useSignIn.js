@@ -9,6 +9,7 @@ const useSignIn = () => {
     mutate({ variables: { username: username, password: password }})
   };
   
+  console.log('SIGN IN HOOK: ', result);
   return [signIn, result];
 }
 
