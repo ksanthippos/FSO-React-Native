@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, TouchableWithoutFeedback, View, StyleSheet } from 'react-native';
 import { Formik } from 'formik'
 import FormikTextInput from './FormikTextInput'
+import AuthStorage from '../utils/authStorage'
 import useSignIn from '../hooks/useSignIn'
 import * as yup from 'yup';
 
@@ -68,17 +69,26 @@ const SignInForm = ({ onsubmit }) => {
 
 const SignIn = () => {
   const [signIn] = useSignIn();
+  const authStorage = new AuthStorage('authStorage')
 
   const onSubmit = async (values) => {
     const { username, password } = values;
 
+    // clear previous tokens
+    // await authStorage.removeAccessToken()
+
     try {
       const { data } = await signIn({ username, password });
-      console.log('Auth token: ', data);
+
+      if (data) {
+        console.log('DATA: ', data);
+        await authStorage.setAccessToken(data.accessToken)
+      }
     } catch (e) {
-      console.log(e);
+      console.log('ERROR: ', e);
     }
   };
+
 
   return(
     <Formik 
