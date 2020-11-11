@@ -73,12 +73,14 @@ const SignIn = () => {
 
   const onSubmit = async (values) => {
     const { username, password } = values;
-    history.push('/')
+    
     try {
       await signIn({ username, password });
-
-    } catch (e) {
+      history.push('/')
+    } 
+    catch (e) {
       console.log('ERROR: ', e);
+      history.push('/signin')
     }
   };
 
