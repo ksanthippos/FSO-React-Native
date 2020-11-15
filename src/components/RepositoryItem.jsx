@@ -64,29 +64,29 @@ const RepositoryItem = (props) => {
             <Text fontWeight="bold" fontSize="subheading">{props.name}</Text>
           </View>
           <View style={styles.infoItem}>
-            <Text color="primary">{props.description}</Text>
+            <Text testID="description" color="primary">{props.description}</Text>
           </View>
           <View style={styles.badgeItem}>
-            <Text color="white">{props.language}</Text>
+            <Text testID="language" color="white">{props.language}</Text>
           </View>
         </View>
       </View>
 
       <View style={styles.containerA}>
         <View style={styles.valueItem}>
-          <Text fontWeight='bold'>{kFormatter(props.stars)}</Text>
+          <Text testID="stars" fontWeight='bold'>{kFormatter(props.stars)}</Text>
           <Text>Stars</Text>
         </View>
         <View style={styles.valueItem}>
-          <Text fontWeight='bold'>{kFormatter(props.forks)}</Text>
+          <Text testID="forks" fontWeight='bold'>{kFormatter(props.forks)}</Text>
           <Text>Forks</Text>
         </View>
         <View style={styles.valueItem}>
-          <Text fontWeight='bold'>{props.reviews}</Text>
+          <Text testID="reviews" fontWeight='bold'>{props.reviews}</Text>
           <Text>Reviews</Text>
         </View>
         <View style={styles.valueItem}>
-          <Text fontWeight='bold'>{props.rating}</Text>
+          <Text testID="rating" fontWeight='bold'>{props.rating}</Text>
           <Text>Rating</Text>
         </View>
       </View>
@@ -94,6 +94,8 @@ const RepositoryItem = (props) => {
     </View>
   );
 };
+
+
 
 
 export default RepositoryItem;
