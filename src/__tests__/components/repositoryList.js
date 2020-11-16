@@ -5,6 +5,8 @@ import { RepositoryListContainer } from '../../components/RepositoryList'
 describe('RepositoryList', () => {
   describe('RepositoryListContainer', () => {
     it('renders repository information correctly', () => {
+
+      // test data
       const repositories = {
         pageInfo: {
           totalCount: 8,
@@ -49,11 +51,30 @@ describe('RepositoryList', () => {
       };
 
       //  render
-      const { getByTestID } = render(<RepositoryListContainer repositories={repositories} />);
+      const { getAllByTestId } = render(<RepositoryListContainer repositories={repositories} />);
 
-      // language
-      expect(getByTestID('language')[0].toHaveTextContent(repositories.edges[0].node.language));
+      // tests for both elements in the array!
+      expect(getAllByTestId('name')[0]).toHaveTextContent(repositories.edges[0].node.fullName);
+      expect(getAllByTestId('name')[1]).toHaveTextContent(repositories.edges[1].node.fullName);
 
+      expect(getAllByTestId('description')[0]).toHaveTextContent(repositories.edges[0].node.description);
+      expect(getAllByTestId('description')[1]).toHaveTextContent(repositories.edges[1].node.description);
+      
+      expect(getAllByTestId('language')[0]).toHaveTextContent(repositories.edges[0].node.language);
+      expect(getAllByTestId('language')[1]).toHaveTextContent(repositories.edges[1].node.language);
+
+      // value formatting is made inside RepisitoryItem, so these (4) have to be formatted separately
+      expect(getAllByTestId('forks')[0]).toHaveTextContent('1.6k');
+      expect(getAllByTestId('forks')[1]).toHaveTextContent('69');
+
+      expect(getAllByTestId('stars')[0]).toHaveTextContent('21.9k');
+      expect(getAllByTestId('stars')[1]).toHaveTextContent('1.8k');
+
+      expect(getAllByTestId('rating')[0]).toHaveTextContent(repositories.edges[0].node.ratingAverage);
+      expect(getAllByTestId('rating')[1]).toHaveTextContent(repositories.edges[1].node.ratingAverage);
+
+      expect(getAllByTestId('reviews')[0]).toHaveTextContent(repositories.edges[0].node.reviewCount);
+      expect(getAllByTestId('reviews')[1]).toHaveTextContent(repositories.edges[1].node.reviewCount);
 
     });
   });

@@ -61,7 +61,7 @@ const RepositoryItem = (props) => {
         </View>
         <View style={styles.containerB}>
           <View style={styles.infoItem}>
-            <Text fontWeight="bold" fontSize="subheading">{props.name}</Text>
+            <Text testID="name" fontWeight="bold" fontSize="subheading">{props.name}</Text>
           </View>
           <View style={styles.infoItem}>
             <Text testID="description" color="primary">{props.description}</Text>
