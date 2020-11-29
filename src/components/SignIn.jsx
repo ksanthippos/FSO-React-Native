@@ -48,6 +48,7 @@ const validationSchema = yup.object().shape({
 
 // for tests
 export const SignInContainer = ({ onSubmit }) => {
+
   return(
     <Formik 
       initialValues={initialValues} 
@@ -100,7 +101,7 @@ const SignIn = () => {
     }
   };
 
-  return(<SignInContainer onsubmit={onSubmit} />)
+  return <SignInContainer onSubmit={onSubmit} />
 };
 
 export default SignIn;
