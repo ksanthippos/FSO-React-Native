@@ -1,28 +1,23 @@
-import React, { useContext } from 'react';
-import { Button, Text, View } from 'react-native';
+import React from 'react';
+import { Text, View } from 'react-native';
 import { useParams } from 'react-router-dom'
-// import useSingleRepository from '../hooks/useSingleRepository'
-import SingleRepoContext from '../contexts/SingleRepoContext'
+import useSingleRepository from '../hooks/useSingleRepository'
 
 
-const SingleRepository = (props) =>  {
-  const id = useParams.id
-  // const { repository } = useSingleRepository({ id })
+const SingleRepository = () =>  {
+  const id = useParams().id
+  const { repository } = useSingleRepository({ id })
 
-  const showRepo = useContext(SingleRepoContext)
-
-
-  const handlePress = () => {
-    showRepo.toggleSingle()
+  if (repository) {
+    return(
+      <View>
+        <Text>{repository.name}</Text>
+      </View>
+    )
   }
-
-  return(
-    <View>
-      <Text>Halloo!</Text>
-      <Button onPress={handlePress} title="back" />
-    </View>
-  )
-
+  else 
+    return null
+  
 }
 
 export default SingleRepository

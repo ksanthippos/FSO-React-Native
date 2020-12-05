@@ -7,6 +7,8 @@ import { useApolloClient } from '@apollo/react-hooks'
 import AuthStorageContext from '../contexts/AuthStorageContext'
 import AppBarTab from './AppBarTab'
 import useAuthUser from '../hooks/useAuthUser'
+import SingleRepoContext from '../contexts/SingleRepoContext'
+
 
 const styles = StyleSheet.create({
   container: {
@@ -23,11 +25,18 @@ const AppBar = () => {
   const history = useHistory()
   const apolloClient = useApolloClient()
   const authStorage = useContext(AuthStorageContext)
+  const showRepo = useContext(SingleRepoContext)
 
   const signOut = async () =>  {
     await authStorage.removeAccessToken()
     apolloClient.resetStore()
     history.push('/signin')
+  }
+
+  const handlePress = () => {
+    if (showRepo.showSingle) {
+      showRepo.toggleSingle()
+    }
   }
 
   return (
@@ -41,7 +50,7 @@ const AppBar = () => {
     </ScrollView>
     :
     <ScrollView horizontal>
-      <Link to="/">
+      <Link to="/"onPress={handlePress}>
         <AppBarTab text={`Repositories`} />
       </Link>
       <TouchableOpacity onPress={signOut}>

@@ -1,9 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext} from 'react';
 import { FlatList, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { useHistory } from 'react-router-dom'
 import RepositoryItem from './RepositoryItem';
 import SingleRepository from './SingleRepository'
 import useRepositories from '../hooks/useRepositories';
 import SingleRepoContext from '../contexts/SingleRepoContext'
+
 
 const styles = StyleSheet.create({
   separator: {
@@ -16,9 +18,7 @@ const styles = StyleSheet.create({
 });
 
 
-
 const ItemSeparator = () => <View style={styles.separator} />;
-
 
 export const RepositoryListContainer = ({ repositories }) => {
   const repositoryNodes = repositories
@@ -26,14 +26,16 @@ export const RepositoryListContainer = ({ repositories }) => {
     : [];  
 
   const showRepo = useContext(SingleRepoContext)
+  const history = useHistory()
 
-  const handlePress = () => {
+  const handlePress = (id) => {
     showRepo.toggleSingle()
+    history.push(`/${id}`)
   }
 
   const renderItem = ({ item }) => {
     return(
-      <TouchableOpacity onPress={handlePress}>
+      <TouchableOpacity onPress={() => handlePress(item.id)}>
         <RepositoryItem 
           name={item.fullName}
           description={item.description} 
@@ -48,6 +50,7 @@ export const RepositoryListContainer = ({ repositories }) => {
     )
   }
 
+  // conditional rendering for single/all repositories view
   if (showRepo.showSingle) {
     return <SingleRepository />
   }
@@ -63,7 +66,6 @@ export const RepositoryListContainer = ({ repositories }) => {
       </View>
     );
   }
-
 }
 
 const RepositoryList = () => {

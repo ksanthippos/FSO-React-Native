@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Route, Switch } from 'react-router-native';
+import { Redirect, Route, Switch } from 'react-router-native';
 import RepositoryList from './RepositoryList';
 import SingleRepository from "./SingleRepository";
 import SignIn from './SignIn'
@@ -29,14 +29,18 @@ const Main = () => {
   return (
     <View style={styles.container}>
       <SingleRepoContext.Provider value={{ showSingle, toggleSingle }}>
-      <AppBar />
-      <Switch>
-        <Route path="/" exact component={RepositoryList} />
-{/*         <Route path="/:id"> 
-          <SingleRepository viewSingle={true} />
-        </Route> */}
-        <Route path="/signin" component={SignIn} />
-      </Switch>
+        <AppBar />
+        <Switch>
+          <Route path="/" exact>
+            <RepositoryList />
+          </Route>
+          <Route path="/signin">
+            <SignIn />
+          </Route>
+          <Route path="/:id"> 
+            <SingleRepository />
+          </Route>
+        </Switch>
       </SingleRepoContext.Provider>
     </View>
   );

@@ -1,10 +1,10 @@
 import { useQuery } from '@apollo/react-hooks';
 import { SINGLE_REPOSITORY } from '../graphql/queries';
 
-const useSingleRepository = () => {
+const useSingleRepository = (variables) => {
   const { data, error, loading } = useQuery(SINGLE_REPOSITORY, {
     fetchPolicy: 'cache-and-network',
-    variables: { orderDirection: 'ASC' }
+    variables
   })
 
   if (!data || data === undefined) {
@@ -22,7 +22,8 @@ const useSingleRepository = () => {
   }
 
   else {
-    console.log('data ready!');
+    console.log('repo ready!');
+    console.log(data);
     return data
   }
 
