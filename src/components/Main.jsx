@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Redirect, Route, Switch } from 'react-router-native';
+import { Route, Switch } from 'react-router-native';
 import RepositoryList from './RepositoryList';
 import SingleRepository from "./SingleRepository";
 import SignIn from './SignIn'
@@ -16,9 +16,7 @@ const styles = StyleSheet.create({
   },
 });
 
-
 const Main = () => {
-
   // useContext for toggling single repository view on/off
   const [ showSingle, setShowSingle ] = useState(false)
 

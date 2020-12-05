@@ -1,5 +1,7 @@
-import React from 'react';
-import { StyleSheet, View, Image } from 'react-native';
+import React, { useContext } from 'react';
+import { StyleSheet, View, Image, TouchableOpacity } from 'react-native';
+import * as Linking from 'expo-linking'
+import SingleRepoContext from '../contexts//SingleRepoContext'
 import Text from './Text'
 
 const styles = StyleSheet.create({
@@ -42,8 +44,23 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     padding: 3,
   },
+  button: {
+    backgroundColor: '#4b9ed4',
+    borderRadius: 3,
+    padding: 10,
+    margin: 10,
+    textAlign: 'center',
+    color: '#ffffff'
+  },
 })
 
+const LinkButton = ({ handlePress }) => {
+  return(
+    <TouchableOpacity onPress={handlePress}>
+        <Text style={styles.button}>Open in GitHub</Text>
+    </TouchableOpacity>
+  )
+}
 
 const RepositoryItem = (props) => {
 
@@ -51,6 +68,12 @@ const RepositoryItem = (props) => {
   const kFormatter = (num) => {
     return Math.abs(num) > 999 ? Math.sign(num)*((Math.abs(num)/1000).toFixed(1)) + 'k' : Math.sign(num)*Math.abs(num)
   } 
+
+  const singleView = useContext(SingleRepoContext)
+
+  const handlePress = () => {
+    Linking.openURL(props.url)
+  }
 
   return(
     <View style={styles.main}>
@@ -90,7 +113,10 @@ const RepositoryItem = (props) => {
           <Text>Rating</Text>
         </View>
       </View>
-
+      {singleView.showSingle
+        ? <LinkButton handlePress={handlePress} />
+        : null 
+        }
     </View>
   );
 };

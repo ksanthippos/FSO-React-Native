@@ -28,6 +28,7 @@
     "apollo-client": "^2.6.10",
     "dotenv": "^8.2.0",
     "expo": "~38.0.8",
+    "expo-linking": "^1.0.5",
     "expo-status-bar": "^1.0.2",
     "formik": "^2.2.1",
     "graphql": "^15.4.0",
