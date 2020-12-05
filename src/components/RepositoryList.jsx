@@ -1,8 +1,9 @@
-import React from 'react';
-import { FlatList, View, StyleSheet } from 'react-native';
+import React, { useContext } from 'react';
+import { FlatList, View, StyleSheet, TouchableOpacity } from 'react-native';
 import RepositoryItem from './RepositoryItem';
+import SingleRepository from './SingleRepository'
 import useRepositories from '../hooks/useRepositories';
-
+import SingleRepoContext from '../contexts/SingleRepoContext'
 
 const styles = StyleSheet.create({
   separator: {
@@ -14,38 +15,55 @@ const styles = StyleSheet.create({
   }
 });
 
+
+
 const ItemSeparator = () => <View style={styles.separator} />;
 
-const renderItem = ({ item }) => {
-  return(
-    <RepositoryItem 
-      name={item.fullName}
-      description={item.description} 
-      language={item.language}
-      stars={item.stargazersCount}
-      forks={item.forksCount}
-      reviews={item.reviewCount}
-      rating={item.ratingAverage}
-      avatar={item.ownerAvatarUrl}
-    />
-  )
-}
 
 export const RepositoryListContainer = ({ repositories }) => {
   const repositoryNodes = repositories
     ? repositories.edges.map(edge => edge.node)
     : [];  
 
-  return (
-    <View style={styles.flexContainer}>
-      <FlatList
-        data={repositoryNodes}
-        ItemSeparatorComponent={ItemSeparator}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-      />
-    </View>
-  );
+  const showRepo = useContext(SingleRepoContext)
+
+  const handlePress = () => {
+    showRepo.toggleSingle()
+  }
+
+  const renderItem = ({ item }) => {
+    return(
+      <TouchableOpacity onPress={handlePress}>
+        <RepositoryItem 
+          name={item.fullName}
+          description={item.description} 
+          language={item.language}
+          stars={item.stargazersCount}
+          forks={item.forksCount}
+          reviews={item.reviewCount}
+          rating={item.ratingAverage}
+          avatar={item.ownerAvatarUrl}
+        />
+      </TouchableOpacity>
+    )
+  }
+
+  if (showRepo.showSingle) {
+    return <SingleRepository />
+  }
+  else {
+    return (
+      <View style={styles.flexContainer}>
+        <FlatList
+          data={repositoryNodes}
+          ItemSeparatorComponent={ItemSeparator}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+        />
+      </View>
+    );
+  }
+
 }
 
 const RepositoryList = () => {

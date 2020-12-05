@@ -63,18 +63,18 @@ describe('RepositoryList', () => {
       expect(getAllByTestId('language')[0]).toHaveTextContent(repositories.edges[0].node.language);
       expect(getAllByTestId('language')[1]).toHaveTextContent(repositories.edges[1].node.language);
 
+      expect(getAllByTestId('rating')[0]).toHaveTextContent(repositories.edges[0].node.ratingAverage);
+      expect(getAllByTestId('rating')[1]).toHaveTextContent(repositories.edges[1].node.ratingAverage);
+
+      expect(getAllByTestId('reviews')[0]).toHaveTextContent(repositories.edges[0].node.reviewCount);
+      expect(getAllByTestId('reviews')[1]).toHaveTextContent(repositories.edges[1].node.reviewCount);
+
       // value formatting is made inside RepisitoryItem, so these (4) have to be formatted separately
       expect(getAllByTestId('forks')[0]).toHaveTextContent('1.6k');
       expect(getAllByTestId('forks')[1]).toHaveTextContent('69');
 
       expect(getAllByTestId('stars')[0]).toHaveTextContent('21.9k');
       expect(getAllByTestId('stars')[1]).toHaveTextContent('1.8k');
-
-      expect(getAllByTestId('rating')[0]).toHaveTextContent(repositories.edges[0].node.ratingAverage);
-      expect(getAllByTestId('rating')[1]).toHaveTextContent(repositories.edges[1].node.ratingAverage);
-
-      expect(getAllByTestId('reviews')[0]).toHaveTextContent(repositories.edges[0].node.reviewCount);
-      expect(getAllByTestId('reviews')[1]).toHaveTextContent(repositories.edges[1].node.reviewCount);
 
     });
   });
